@@ -8,8 +8,17 @@ function calculateScores(pullups, pushups, plankTime, runTime) {
   pushupScore = Math.min(pushupScore, 100);
   pushupScore = Math.floor(pushupScore * 2) / 2; // round down to nearest 0.5
 
-  const plankScore = 100 * (1 - Math.exp(-1.2 * plankTime));
-  const runScore = Math.max(100 - 5 * ((runTime - 720) / 30), 0);
+  // New Plank scoring:
+  // Convert plankTime (minutes) to seconds.
+  const plankSec = plankTime * 60;
+  const plankScore = (plankSec >= 260) 
+    ? 100 
+    : Math.max(100 - Math.floor((260 - plankSec) / 2), 0);
+
+  // New Run scoring:
+  const runScore = (runTime <= 720) 
+    ? 100 
+    : Math.max(100 - Math.floor((runTime - 720) / 5), 0);
 
   const finalScore = (pullupScore + pushupScore + plankScore + runScore) / 4;
 
@@ -27,7 +36,7 @@ function classifyFitness(score) {
   return "Beginner";
 }
 
-// HELPER: Format seconds as mm:ss
+// HELPER FUNCTION: Format seconds as mm:ss
 function formatTimeFromSeconds(totalSeconds) {
   let mins = Math.floor(totalSeconds / 60);
   let secs = Math.round(totalSeconds % 60);
@@ -235,19 +244,20 @@ function generatePlankTable() {
   for (let s = 100; s >= 0; s--) {
     let row = table.insertRow();
     let timeRequired;
+    // For s == 100, time required is 260 seconds (4:20)
     if (s === 100) {
-      timeRequired = "7+ minutes";
+      timeRequired = "4:20";
     } else {
-      // For s < 100, invert formula: t = -ln(1 - s/100)/1.2 (in minutes)
-      let t = -Math.log(1 - s / 100) / 1.2;
-      timeRequired = formatTimeFromSeconds(t * 60);
+      // Invert the deduction: required time = 260 - 2*(100 - s)
+      let t = 260 - 2 * (100 - s);
+      timeRequired = formatTimeFromSeconds(t);
     }
     row.insertCell().innerText = s;
     row.insertCell().innerText = timeRequired;
   }
 }
 
-// Generate 2-Mile Run Table: For each score from 100 down to 0, compute required time
+// Generate Run Table: For each score from 100 down to 0, compute required time
 function generateRunTable() {
   const table = document.getElementById("runTable");
   table.innerHTML = "";
@@ -257,8 +267,8 @@ function generateRunTable() {
 
   for (let s = 100; s >= 0; s--) {
     let row = table.insertRow();
-    // Invert run formula: time (in seconds) = 720 + 6*(100 - s)
-    let t = 720 + 6 * (100 - s);
+    // Invert the run formula: required time = 720 + 5*(100 - s)
+    let t = 720 + 5 * (100 - s);
     let timeRequired = formatTimeFromSeconds(t);
     row.insertCell().innerText = s;
     row.insertCell().innerText = timeRequired;
