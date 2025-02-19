@@ -1,3 +1,5 @@
+// --- CALCULATION FUNCTIONS ---
+
 // Calculate event scores from raw inputs
 function calculateScores(pullups, pushups, plankTime, runTime) {
   const pullupScore = Math.min(5 * pullups, 100);
@@ -25,7 +27,16 @@ function classifyFitness(score) {
   return "Beginner";
 }
 
-// Initialize the Chart.js chart
+// HELPER: Format seconds as mm:ss
+function formatTimeFromSeconds(totalSeconds) {
+  let mins = Math.floor(totalSeconds / 60);
+  let secs = Math.round(totalSeconds % 60);
+  if (secs < 10) secs = '0' + secs;
+  return mins + ":" + secs;
+}
+
+// --- CHART SETUP ---
+
 const ctx = document.getElementById('fitnessChart').getContext('2d');
 let fitnessChart = new Chart(ctx, {
   type: 'line',
@@ -77,33 +88,19 @@ let fitnessChart = new Chart(ctx, {
   options: {
     responsive: true,
     plugins: {
-      legend: {
-        position: 'top'
-      },
-      title: {
-        display: true,
-        text: 'Fitness Test Scores Over Time'
-      }
+      legend: { position: 'top' },
+      title: { display: true, text: 'Fitness Test Scores Over Time' }
     },
     scales: {
       x: {
         type: 'time',
-        time: {
-          unit: 'month',
-          tooltipFormat: 'yyyy-MM-dd'
-        },
-        title: {
-          display: true,
-          text: 'Date'
-        }
+        time: { unit: 'month', tooltipFormat: 'yyyy-MM-dd' },
+        title: { display: true, text: 'Date' }
       },
       y: {
         min: 0,
         max: 100,
-        title: {
-          display: true,
-          text: 'Score'
-        }
+        title: { display: true, text: 'Score' }
       }
     }
   }
@@ -120,13 +117,13 @@ function addDataPoint(date, scores) {
   fitnessChart.update();
 }
 
-// Load historical data from a JSON file
+// --- LOAD HISTORICAL DATA ---
+
 fetch('historicalData.json')
   .then(response => response.json())
   .then(data => {
     data.forEach(entry => {
       const dateStr = entry.date; // expected in yyyy-mm-dd format
-      // Compute total times:
       const plankTime = entry.plank.minutes + (entry.plank.seconds / 60);
       const runTime = entry.run.minutes * 60 + entry.run.seconds;
       const scores = calculateScores(entry.pullups, entry.pushups, plankTime, runTime);
@@ -137,7 +134,8 @@ fetch('historicalData.json')
     console.error('Error loading historical data:', error);
   });
 
-// Handle new form submissions
+// --- HANDLE NEW FORM SUBMISSIONS ---
+
 document.getElementById('fitnessForm').addEventListener('submit', function(e) {
   e.preventDefault();
 
@@ -162,14 +160,8 @@ document.getElementById('fitnessForm').addEventListener('submit', function(e) {
     date: dateStr,
     pullups: pullups,
     pushups: pushups,
-    plank: {
-      minutes: plankMinutes,
-      seconds: plankSeconds
-    },
-    run: {
-      minutes: runMinutes,
-      seconds: runSeconds
-    }
+    plank: { minutes: plankMinutes, seconds: plankSeconds },
+    run: { minutes: runMinutes, seconds: runSeconds }
   };
 
   // Calculate scores from the raw inputs
@@ -195,3 +187,86 @@ document.getElementById('fitnessForm').addEventListener('submit', function(e) {
   // Reset the form
   document.getElementById('fitnessForm').reset();
 });
+
+// --- SCORE TABLE GENERATION FUNCTIONS ---
+
+// Generate Pull-Ups Table: Descending from max (20) to 0
+function generatePullupTable() {
+  const table = document.getElementById("pullupTable");
+  table.innerHTML = "";
+  let header = table.insertRow();
+  header.insertCell().innerHTML = "<strong>Repetitions</strong>";
+  header.insertCell().innerHTML = "<strong>Score</strong>";
+
+  for (let reps = 20; reps >= 0; reps--) {
+    let score = Math.min(5 * reps, 100);
+    let row = table.insertRow();
+    row.insertCell().innerText = reps;
+    row.insertCell().innerText = score;
+  }
+}
+
+// Generate Push-Ups Table: Descending from max (80) to 0
+function generatePushupTable() {
+  const table = document.getElementById("pushupTable");
+  table.innerHTML = "";
+  let header = table.insertRow();
+  header.insertCell().innerHTML = "<strong>Repetitions</strong>";
+  header.insertCell().innerHTML = "<strong>Score</strong>";
+
+  for (let reps = 80; reps >= 0; reps--) {
+    let score = (reps * 100) / 80;
+    score = Math.min(score, 100);
+    score = Math.floor(score * 2) / 2;
+    let row = table.insertRow();
+    row.insertCell().innerText = reps;
+    row.insertCell().innerText = score;
+  }
+}
+
+// Generate Plank Table: For each score from 100 down to 0, compute required time
+function generatePlankTable() {
+  const table = document.getElementById("plankTable");
+  table.innerHTML = "";
+  let header = table.insertRow();
+  header.insertCell().innerHTML = "<strong>Score</strong>";
+  header.insertCell().innerHTML = "<strong>Time Required (mm:ss)</strong>";
+
+  for (let s = 100; s >= 0; s--) {
+    let row = table.insertRow();
+    let timeRequired;
+    if (s === 100) {
+      timeRequired = "7+ minutes";
+    } else {
+      // For s < 100, invert formula: t = -ln(1 - s/100)/1.2 (in minutes)
+      let t = -Math.log(1 - s / 100) / 1.2;
+      timeRequired = formatTimeFromSeconds(t * 60);
+    }
+    row.insertCell().innerText = s;
+    row.insertCell().innerText = timeRequired;
+  }
+}
+
+// Generate 2-Mile Run Table: For each score from 100 down to 0, compute required time
+function generateRunTable() {
+  const table = document.getElementById("runTable");
+  table.innerHTML = "";
+  let header = table.insertRow();
+  header.insertCell().innerHTML = "<strong>Score</strong>";
+  header.insertCell().innerHTML = "<strong>Time Required (mm:ss)</strong>";
+
+  for (let s = 100; s >= 0; s--) {
+    let row = table.insertRow();
+    // Invert run formula: time (in seconds) = 720 + 6*(100 - s)
+    let t = 720 + 6 * (100 - s);
+    let timeRequired = formatTimeFromSeconds(t);
+    row.insertCell().innerText = s;
+    row.insertCell().innerText = timeRequired;
+  }
+}
+
+// Call table generation functions
+generatePullupTable();
+generatePushupTable();
+generatePlankTable();
+generateRunTable();

@@ -28,13 +28,13 @@
     </label>
     <label>
       Plank Hold:
-      <input type="number" id="plankMinutes" name="plankMinutes" required min="0" placeholder="Minutes">
-      <input type="number" id="plankSeconds" name="plankSeconds" required min="0" max="59" placeholder="Seconds">
+      <input type="number" class="timeField" id="plankMinutes" name="plankMinutes" required min="0" placeholder="Minutes">
+      <input type="number" class="timeField" id="plankSeconds" name="plankSeconds" required min="0" max="59" placeholder="Seconds">
     </label>
     <label>
       2-Mile Run:
-      <input type="number" id="runMinutes" name="runMinutes" required min="0" placeholder="Minutes">
-      <input type="number" id="runSeconds" name="runSeconds" required min="0" max="59" placeholder="Seconds">
+      <input type="number" class="timeField" id="runMinutes" name="runMinutes" required min="0" placeholder="Minutes">
+      <input type="number" class="timeField" id="runSeconds" name="runSeconds" required min="0" max="59" placeholder="Seconds">
     </label>
     <button type="submit">Calculate &amp; Generate Log Entry</button>
   </form>
@@ -47,57 +47,76 @@
     <pre id="logEntry"></pre>
   </div>
   
-<!-- Test Details Box -->
-<div id="testDetails" class="box">
-  <h2>Test Details</h2>
-  <p>This test consists of four exercises, each scored on a 0-100 scale. The final score is the average of all four event scores.</p>
+  <!-- Test Details Box -->
+  <div id="testDetails" class="box">
+    <h2>Test Details</h2>
+    <p>This test consists of four exercises, each scored on a 0-100 scale. The final score is the average of all four event scores.</p>
 
-  <h3>Exercises & Scoring</h3>
-  <ul>
-    <li>
-      <strong>Pull-Ups:</strong> A test of upper body strength.
-      <p>Start from a dead hang on a pull-up bar, then pull yourself up until your chin is above the bar. Lower yourself back to a full hang before starting the next rep.</p>
-      <p><strong>Scoring:</strong> 5 points per pull-up, up to a maximum of 20 reps (100 points).</p>
-    </li>
+    <h3>Exercises & Scoring</h3>
+    <ul>
+      <li>
+        <strong>Pull-Ups:</strong> A test of upper body strength.
+        <p>Start from a dead hang on a pull-up bar, then pull yourself up until your chin is above the bar. Lower yourself back to a full hang before starting the next rep.</p>
+        <p><strong>Scoring:</strong> 5 points per pull-up, up to a maximum of 20 reps (100 points).</p>
+      </li>
 
-    <li>
-      <strong>Push-Ups:</strong> Measures muscular endurance.
-      <p>Perform as many full push-ups as possible in 2 minutes. A proper push-up starts in a plank position, lowering your chest to the ground and pushing back up.</p>
-      <p><strong>Scoring:</strong> A linear scale from 0 to 80 reps, calculated as (reps × 100 / 80), rounded down to the nearest 0.5. Maximum score at 80 reps.</p>
-    </li>
+      <li>
+        <strong>Push-Ups:</strong> Measures muscular endurance.
+        <p>Perform as many full push-ups as possible in 2 minutes. A proper push-up starts in a plank position, lowering your chest to the ground and pushing back up.</p>
+        <p><strong>Scoring:</strong> A linear scale from 0 to 80 reps, calculated as (reps × 100 / 80), rounded down to the nearest 0.5. Maximum score at 80 reps.</p>
+      </li>
 
-    <li>
-      <strong>Plank Hold:</strong> Evaluates core endurance.
-      <p>Hold a plank position on your forearms and toes, keeping your body straight. Time is measured in minutes and seconds.</p>
-      <p><strong>Scoring:</strong> Exponential scaling formula: <br> 
-      100 × (1 - e<sup>-1.2 × (time in minutes)</sup>). <br>
-      Higher times result in diminishing point increases. 7+ minutes earns the full 100 points.</p>
-    </li>
+      <li>
+        <strong>Plank Hold:</strong> Evaluates core endurance.
+        <p>Hold a plank position on your forearms and toes, keeping your body straight. Time is measured in minutes and seconds.</p>
+        <p><strong>Scoring:</strong> Exponential scaling formula: <br> 
+        100 × (1 - e<sup>-1.2 × (time in minutes)</sup>). <br>
+        Higher times result in diminishing point increases. 7+ minutes earns the full 100 points.</p>
+      </li>
 
-    <li>
-      <strong>2-Mile Run:</strong> Tests cardiovascular fitness.
-      <p>Run a distance of 2 miles (3.2 km) as fast as possible. Time is recorded in minutes and seconds.</p>
-      <p><strong>Scoring:</strong> 100 points for a time of 12:00 minutes or faster. Every 30 seconds slower deducts 5 points, calculated as:<br>
-      100 - 5 × ((time in seconds - 720) / 30). <br>
-      The lowest possible score is 0 at 22:00+ minutes.</p>
-    </li>
-  </ul>
+      <li>
+        <strong>2-Mile Run:</strong> Tests cardiovascular fitness.
+        <p>Run a distance of 2 miles (3.2 km) as fast as possible. Time is recorded in minutes and seconds.</p>
+        <p><strong>Scoring:</strong> 100 points for a time of 12:00 minutes or faster. Every 30 seconds slower deducts 5 points, calculated as:<br>
+        100 - 5 × ((time in seconds - 720) / 30). <br>
+        The lowest possible score is 0 at 22:00+ minutes.</p>
+      </li>
+    </ul>
 
-  <h3>Final Score Calculation</h3>
-  <p><strong>Final Score</strong> = (Pull-Up Score + Push-Up Score + Plank Score + Run Score) / 4.</p>
+    <h3>Final Score Calculation</h3>
+    <p><strong>Final Score</strong> = (Pull-Up Score + Push-Up Score + Plank Score + Run Score) / 4.</p>
 
-  <h3>Fitness Levels</h3>
-  <ul>
-    <li>90-100: Elite </li>
-    <li>80-89: Excellent</li>
-    <li>70-79: Good</li>
-    <li>60-69: Average</li>
-    <li>40-59: Below Average</li>
-    <li>20-39: Needs Improvement</li>
-    <li>0-19: Beginner</li>
-  </ul>
-</div>
-
+    <h3>Fitness Levels</h3>
+    <ul>
+      <li>90-100: Elite </li>
+      <li>80-89: Excellent</li>
+      <li>70-79: Good</li>
+      <li>60-69: Average</li>
+      <li>40-59: Below Average</li>
+      <li>20-39: Needs Improvement</li>
+      <li>0-19: Beginner</li>
+    </ul>
+  </div>
+  
+  <!-- Score Tables Sections -->
+  <div id="tablesContainer">
+    <div id="pullupTableSection" class="box">
+      <h2>Pull-Ups Score Table</h2>
+      <table id="pullupTable"></table>
+    </div>
+    <div id="pushupTableSection" class="box">
+      <h2>Push-Ups Score Table</h2>
+      <table id="pushupTable"></table>
+    </div>
+    <div id="plankTableSection" class="box">
+      <h2>Plank Hold Score Table</h2>
+      <table id="plankTable"></table>
+    </div>
+    <div id="runTableSection" class="box">
+      <h2>2-Mile Run Score Table</h2>
+      <table id="runTable"></table>
+    </div>
+  </div>
   
   <script src="script.js"></script>
 </body>
