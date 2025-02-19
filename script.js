@@ -238,8 +238,8 @@ function generatePlankTable() {
   const table = document.getElementById("plankTable");
   table.innerHTML = "";
   let header = table.insertRow();
-  header.insertCell().innerHTML = "<strong>Score</strong>";
   header.insertCell().innerHTML = "<strong>Time Required (mm:ss)</strong>";
+  header.insertCell().innerHTML = "<strong>Score</strong>";
 
   for (let s = 100; s >= 0; s--) {
     let row = table.insertRow();
@@ -252,8 +252,8 @@ function generatePlankTable() {
       let t = 260 - 2 * (100 - s);
       timeRequired = formatTimeFromSeconds(t);
     }
-    row.insertCell().innerText = s;
     row.insertCell().innerText = timeRequired;
+    row.insertCell().innerText = s;
   }
 }
 
@@ -262,16 +262,16 @@ function generateRunTable() {
   const table = document.getElementById("runTable");
   table.innerHTML = "";
   let header = table.insertRow();
-  header.insertCell().innerHTML = "<strong>Score</strong>";
   header.insertCell().innerHTML = "<strong>Time Required (mm:ss)</strong>";
+  header.insertCell().innerHTML = "<strong>Score</strong>";
 
   for (let s = 100; s >= 0; s--) {
     let row = table.insertRow();
     // Invert the run formula: required time = 720 + 5*(100 - s)
     let t = 720 + 5 * (100 - s);
     let timeRequired = formatTimeFromSeconds(t);
-    row.insertCell().innerText = s;
     row.insertCell().innerText = timeRequired;
+    row.insertCell().innerText = s;
   }
 }
 
