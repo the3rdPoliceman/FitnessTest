@@ -1,0 +1,92 @@
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# macOS Trash files
+*.~lock
+.Trashes
+._*
+
+# Node.js dependencies
+node_modules/
+npm-debug.log
+yarn-error.log
+pnpm-lock.yaml
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build output
+dist/
+build/
+out/
+.tmp/
+.cache/
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# Bower dependencies
+bower_components/
+
+# TypeScript
+*.tsbuildinfo
+
+# Coverage
+coverage/
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# Static assets generated at runtime
+public/uploads/
+public/tmp/
+public/cache/
+
+# Miscellaneous
+*.bak
+*.orig
+Thumbs.db
+
+# Compiled files
+*.min.js
+*.map
+*.gz
+*.br
+
+# Service Workers
+sw.js
+sw.json
+workbox-*.js
+
+# Webpack / Parcel / Rollup
+.cache/
+.parcel-cache/
+.webpack/
+
+# ESLint / Prettier
+.eslintcache
+.prettiercache
+.prettierignore
+
+# Jest / Testing
+jest/
+jest.config.js
+jest.setup.js
+__snapshots__/
+coverage/
