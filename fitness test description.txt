@@ -1,0 +1,84 @@
+This test consists of four exercises, each scored on a 0-100 scale with no failures. The system is based on military standards but adapted to always provide a score, even at lower performance levels.
+
+📌 Test Structure:
+1. Pull-Ups – Measures upper body strength
+2. Push-Ups (2 min max reps) – Tests muscular endurance
+3. Plank Hold – Assesses core endurance
+4. 2-Mile Run (3.2 km) – Evaluates cardiovascular fitness
+
+Your final score is the average of all four events.
+
+📌 Scoring System (0-100 per event)
+
+1️⃣ Pull-Ups (5 Points Per Rep)
+Formula:
+  Score = min(5 × pull-ups, 100)
+Example:
+  - 10 pull-ups → 50 points
+  - 17 pull-ups → 85 points
+  - 21 pull-ups → 100 points (capped)
+
+2️⃣ Push-Ups (Linear Scale, Rounded Down to 0.5)
+Formula:
+  Score = min((push-ups × 100) / 80, 100)
+  - Round down to the nearest 0.5.
+Example:
+  - 40 push-ups → (40 × 100) / 80 = 50 → 50 points
+  - 67 push-ups → (67 × 100) / 80 = 83.75 → 83.5 points
+  - 82 push-ups → 100 points (capped)
+
+3️⃣ Plank Hold (Exponential Scale)
+Formula:
+  Score = 100 × (1 - e^(-1.2 × (time in minutes)))
+Example:
+  - 1:00 min → 10.9 points
+  - 2:00 min → 26.9 points
+  - 3:00 min → 50.7 points
+  - 4:00 min → 72.6 points
+  - 5:00 min → 86.5 points
+  - 6:00 min → 94.2 points
+  - 7:00+ min → 100 points
+
+4️⃣ 2-Mile Run (Formula for Every Second)
+Formula:
+  Score = max(100 - 5 × ((time in seconds - 720) / 30), 0)
+Example:
+  - 12:00 min (720s) → 100 points
+  - 13:00 min (780s) → 90 points
+  - 14:00 min (840s) → 80 points
+  - 16:00 min (960s) → 60 points
+  - 18:00 min (1080s) → 40 points
+  - 20:00 min (1200s) → 20 points
+  - 22:00 min (1320s) → 0 points
+
+📌 Summary of Formulas
+| Event | Formula |
+|----------|------------|
+| Pull-Ups | Score = min(5 × pull-ups, 100) |
+| Push-Ups | Score = min((push-ups × 100) / 80, 100) (rounded down to 0.5) |
+| Plank Hold | Score = 100 × (1 - e^(-1.2 × (time in minutes))) |
+| 2-Mile Run | Score = max(100 - 5 × ((time in seconds - 720) / 30), 0) |
+
+📌 Final Score Calculation:
+Total Score = (Pull-Up Score + Push-Up Score + Plank Score + Run Score) / 4
+
+📌 Fitness Level Classification:
+| Final Score | Level |
+|---------------|-------------------|
+| 90-100  | Elite (Special Forces Ready) |
+| 80-89   | Excellent |
+| 70-79   | Good |
+| 60-69   | Average |
+| 40-59   | Below Average |
+| 20-39   | Needs Improvement |
+| 0-19    | Beginner |
+
+📌 Example Calculation:
+- Pull-Ups: 15 → 75 points
+- Push-Ups: 55 → 68.5 points
+- Plank Hold: 3:30 min → 61.2 points
+- 2-Mile Run: 14:40 min → 75 points
+
+Final Score:
+(75 + 68.5 + 61.2 + 75) / 4 = 69.9
+Rating: "Average"

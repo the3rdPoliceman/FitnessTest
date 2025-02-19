@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Online Fitness Test</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Chart.js from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <h1>Online Fitness Test</h1>
+  
+  <!-- Combined Chart at the Top -->
+  <canvas id="fitnessChart" width="800" height="400"></canvas>
+  
+  <!-- Input Form for New Results -->
+  <form id="fitnessForm">
+    <h2>Enter New Test Results</h2>
+    <label>
+      Pull-Ups:
+      <input type="number" id="pullups" name="pullups" required min="0">
+    </label>
+    <label>
+      Push-Ups:
+      <input type="number" id="pushups" name="pushups" required min="0">
+    </label>
+    <label>
+      Plank Hold (minutes):
+      <input type="number" step="0.01" id="plank" name="plank" required min="0">
+    </label>
+    <label>
+      2-Mile Run (seconds):
+      <input type="number" id="run" name="run" required min="0">
+    </label>
+    <button type="submit">Calculate &amp; Generate Log Entry</button>
+  </form>
+  
+  <!-- Results and Log Entry Output -->
+  <div id="resultArea">
+    <h2>Test Result</h2>
+    <div id="resultDisplay"></div>
+    <h3>Log Entry (copy to your historical data file):</h3>
+    <pre id="logEntry"></pre>
+  </div>
+  
+  <script src="script.js"></script>
+</body>
+</html>
