@@ -43,7 +43,7 @@
   <div id="resultArea" class="box">
     <h2>Test Result</h2>
     <div id="resultDisplay"></div>
-    <h3>Log Entry (copy to your historical data file):</h3>
+    <h3>Log Entry (copy to <a href="https://github.com/the3rdPoliceman/FitnessTest/blob/main/historicalData.json">your historical data file</a>):</h3>
     <pre id="logEntry"></pre>
   </div>
   
@@ -56,14 +56,25 @@
     <ul>
       <li>
         <strong>Pull-Ups:</strong> A test of upper body strength.
-        <p>Start from a dead hang on a pull-up bar, then pull yourself up until your chin is above the bar. Lower yourself back to a full hang before starting the next rep.</p>
-        <p><strong>Scoring:</strong> 5 points per pull-up, up to a maximum of 20 reps (100 points).</p>
+        <p>Rules:
+          <ul>
+            <li>Start from a dead hang on a pull-up bar, then pull yourself up until your chin is above the bar</li>
+            <li>Lower yourself back to a full hang beetween each rep</li>
+            <li>No using leg movement for momentum (kipping)</li>
+          </ul>
+        </p>
+        <p><strong>Scoring:</strong> 20 reps gives 100 points. For each pull up less, 5 points is deducted.</p>
       </li>
 
       <li>
         <strong>Push-Ups:</strong> Measures muscular endurance.
-        <p>Perform as many full push-ups as possible in 2 minutes. A proper push-up starts in a plank position, lowering your chest until upper arms are parallel to the floor.</p>
-        <p><strong>Scoring:</strong> A linear scale from 0 to 80 reps, calculated as (reps × 100 / 80), rounded down to the nearest 0.5. Maximum score at 80 reps.</p>
+        <p>Perform as many full push-ups as possible in 2 minutes. Rules:
+          <ul>
+            <li>A proper push-up starts in a plank position, lowering your chest until upper arms are parallel to the floor</li>
+            <li>No breaks allowed - once you start, your weight must remain on your hands</li>
+          </ul>
+        </p>
+        <p><strong>Scoring:</strong> 80 reps gives 100 points. Each rep less loses you 0.8 points. Rounded down</p>
       </li>
 
       <li>
@@ -75,7 +86,7 @@
       <li>
         <strong>2-Mile Run:</strong> Tests cardiovascular fitness.
         <p>Run a distance of 2 miles (3.2 km) as fast as possible.</p>
-        <p><strong>Scoring:</strong> 12:00 (720 seconds) gives 100 points. For every 5 seconds more than 12:00, you lose 1 point.</p>
+        <p><strong>Scoring:</strong> 12:00 gives 100 points. For every 5 seconds more than 12:00, you lose 1 point.</p>
       </li>
     </ul>
 

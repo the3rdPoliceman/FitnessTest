@@ -6,7 +6,7 @@ function calculateScores(pullups, pushups, plankTime, runTime) {
 
   let pushupScore = (pushups * 100) / 80;
   pushupScore = Math.min(pushupScore, 100);
-  pushupScore = Math.floor(pushupScore * 2) / 2; // round down to nearest 0.5
+  pushupScore = Math.floor(pushupScore); // round down 
 
   // New Plank scoring:
   // Convert plankTime (minutes) to seconds.
@@ -226,7 +226,7 @@ function generatePushupTable() {
   for (let reps = 80; reps >= 0; reps--) {
     let score = (reps * 100) / 80;
     score = Math.min(score, 100);
-    score = Math.floor(score * 2) / 2;
+    score = Math.floor(score);
     let row = table.insertRow();
     row.insertCell().innerText = reps;
     row.insertCell().innerText = score;
