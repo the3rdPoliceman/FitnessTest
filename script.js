@@ -1,14 +1,13 @@
 // Calculate event scores from raw inputs
-function calculateScores(pullups, pushups, plank, run) {
+function calculateScores(pullups, pushups, plankTime, runTime) {
   const pullupScore = Math.min(5 * pullups, 100);
 
   let pushupScore = (pushups * 100) / 80;
   pushupScore = Math.min(pushupScore, 100);
   pushupScore = Math.floor(pushupScore * 2) / 2; // round down to nearest 0.5
 
-  const plankScore = 100 * (1 - Math.exp(-1.2 * plank));
-
-  const runScore = Math.max(100 - 5 * ((run - 720) / 30), 0);
+  const plankScore = 100 * (1 - Math.exp(-1.2 * plankTime));
+  const runScore = Math.max(100 - 5 * ((runTime - 720) / 30), 0);
 
   const finalScore = (pullupScore + pushupScore + plankScore + runScore) / 4;
 
@@ -91,7 +90,7 @@ let fitnessChart = new Chart(ctx, {
         type: 'time',
         time: {
           unit: 'month',
-          tooltipFormat: 'YYYY-MM-DD'
+          tooltipFormat: 'yyyy-MM-dd'
         },
         title: {
           display: true,
@@ -127,7 +126,10 @@ fetch('historicalData.json')
   .then(data => {
     data.forEach(entry => {
       const dateStr = entry.date; // expected in yyyy-mm-dd format
-      const scores = calculateScores(entry.pullups, entry.pushups, entry.plank, entry.run);
+      // Compute total times:
+      const plankTime = entry.plank.minutes + (entry.plank.seconds / 60);
+      const runTime = entry.run.minutes * 60 + entry.run.seconds;
+      const scores = calculateScores(entry.pullups, entry.pushups, plankTime, runTime);
       addDataPoint(dateStr, scores);
     });
   })
@@ -142,24 +144,36 @@ document.getElementById('fitnessForm').addEventListener('submit', function(e) {
   // Get raw input values
   const pullups = parseInt(document.getElementById('pullups').value, 10);
   const pushups = parseInt(document.getElementById('pushups').value, 10);
-  const plank = parseFloat(document.getElementById('plank').value);
-  const run = parseInt(document.getElementById('run').value, 10);
+  
+  const plankMinutes = parseInt(document.getElementById('plankMinutes').value, 10);
+  const plankSeconds = parseInt(document.getElementById('plankSeconds').value, 10);
+  const plankTime = plankMinutes + (plankSeconds / 60);
+
+  const runMinutes = parseInt(document.getElementById('runMinutes').value, 10);
+  const runSeconds = parseInt(document.getElementById('runSeconds').value, 10);
+  const runTime = runMinutes * 60 + runSeconds;
 
   // Create a simple date string in yyyy-mm-dd format
   const today = new Date();
   const dateStr = today.toISOString().slice(0, 10);
 
-  // Create a raw log entry object (JSON)
+  // Create a raw log entry object (JSON) with subfields for time
   const logEntryObj = {
     date: dateStr,
     pullups: pullups,
     pushups: pushups,
-    plank: plank,
-    run: run
+    plank: {
+      minutes: plankMinutes,
+      seconds: plankSeconds
+    },
+    run: {
+      minutes: runMinutes,
+      seconds: runSeconds
+    }
   };
 
   // Calculate scores from the raw inputs
-  const scores = calculateScores(pullups, pushups, plank, run);
+  const scores = calculateScores(pullups, pushups, plankTime, runTime);
   const classification = classifyFitness(scores.finalScore);
 
   // Display calculated results

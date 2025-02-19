@@ -33,12 +33,17 @@ label {
 }
 
 input[type="number"] {
-  width: 100%;
+  width: 48%;
   padding: 8px;
   margin-top: 4px;
+  margin-right: 4%;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+}
+
+input[type="number"]:last-of-type {
+  margin-right: 0;
 }
 
 button {
@@ -57,11 +62,12 @@ button:hover {
   background: #0056b3;
 }
 
-#resultArea {
+.box {
   background: #fff;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
 }
 
 pre {

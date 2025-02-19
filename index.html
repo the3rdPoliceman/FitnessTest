@@ -27,22 +27,47 @@
       <input type="number" id="pushups" name="pushups" required min="0">
     </label>
     <label>
-      Plank Hold (minutes):
-      <input type="number" step="0.01" id="plank" name="plank" required min="0">
+      Plank Hold:
+      <input type="number" id="plankMinutes" name="plankMinutes" required min="0" placeholder="Minutes">
+      <input type="number" id="plankSeconds" name="plankSeconds" required min="0" max="59" placeholder="Seconds">
     </label>
     <label>
-      2-Mile Run (seconds):
-      <input type="number" id="run" name="run" required min="0">
+      2-Mile Run:
+      <input type="number" id="runMinutes" name="runMinutes" required min="0" placeholder="Minutes">
+      <input type="number" id="runSeconds" name="runSeconds" required min="0" max="59" placeholder="Seconds">
     </label>
     <button type="submit">Calculate &amp; Generate Log Entry</button>
   </form>
   
   <!-- Results and Log Entry Output -->
-  <div id="resultArea">
+  <div id="resultArea" class="box">
     <h2>Test Result</h2>
     <div id="resultDisplay"></div>
     <h3>Log Entry (copy to your historical data file):</h3>
     <pre id="logEntry"></pre>
+  </div>
+  
+  <!-- Test Details Box -->
+  <div id="testDetails" class="box">
+    <h2>Test Details</h2>
+    <p>This test consists of four exercises, each scored on a 0-100 scale:</p>
+    <ul>
+      <li><strong>Pull-Ups:</strong> 5 points per rep (capped at 100 points).</li>
+      <li><strong>Push-Ups:</strong> Linear scoring based on max reps in 2 minutes, rounded down to the nearest 0.5.</li>
+      <li><strong>Plank Hold:</strong> Exponential scale calculated as 100 × (1 - e<sup>-1.2 × (time in minutes)</sup>).</li>
+      <li><strong>2-Mile Run:</strong> Score decreases with time, calculated as 100 - 5 × ((time in seconds - 720) / 30).</li>
+    </ul>
+    <p><strong>Final Score</strong> = (Pull-Up Score + Push-Up Score + Plank Score + Run Score) / 4.</p>
+    <p><strong>Fitness Levels:</strong></p>
+    <ul>
+      <li>90-100: Elite (Special Forces Ready)</li>
+      <li>80-89: Excellent</li>
+      <li>70-79: Good</li>
+      <li>60-69: Average</li>
+      <li>40-59: Below Average</li>
+      <li>20-39: Needs Improvement</li>
+      <li>0-19: Beginner</li>
+    </ul>
   </div>
   
   <script src="script.js"></script>

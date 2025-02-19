@@ -3,35 +3,65 @@
     "date": "2024-01-15",
     "pullups": 10,
     "pushups": 40,
-    "plank": 2.0,
-    "run": 780
+    "plank": {
+      "minutes": 2,
+      "seconds": 0
+    },
+    "run": {
+      "minutes": 13,
+      "seconds": 0
+    }
   },
   {
     "date": "2024-03-10",
     "pullups": 12,
     "pushups": 50,
-    "plank": 2.5,
-    "run": 750
+    "plank": {
+      "minutes": 2,
+      "seconds": 30
+    },
+    "run": {
+      "minutes": 12,
+      "seconds": 30
+    }
   },
   {
     "date": "2024-06-05",
     "pullups": 15,
     "pushups": 55,
-    "plank": 3.0,
-    "run": 720
+    "plank": {
+      "minutes": 3,
+      "seconds": 0
+    },
+    "run": {
+      "minutes": 12,
+      "seconds": 0
+    }
   },
   {
     "date": "2024-08-20",
     "pullups": 20,
     "pushups": 65,
-    "plank": 4.0,
-    "run": 730
+    "plank": {
+      "minutes": 4,
+      "seconds": 0
+    },
+    "run": {
+      "minutes": 12,
+      "seconds": 10
+    }
   },
   {
     "date": "2024-11-02",
     "pullups": 18,
     "pushups": 60,
-    "plank": 3.5,
-    "run": 740
+    "plank": {
+      "minutes": 3,
+      "seconds": 30
+    },
+    "run": {
+      "minutes": 12,
+      "seconds": 20
+    }
   }
 ]
