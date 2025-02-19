@@ -98,7 +98,7 @@ let fitnessChart = new Chart(ctx, {
     responsive: true,
     plugins: {
       legend: { position: 'top' },
-      title: { display: true, text: 'Fitness Test Scores Over Time' }
+      title: { display: true, text: 'Score History' }
     },
     scales: {
       x: {

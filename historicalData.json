@@ -1,67 +1,28 @@
 [
   {
-    "date": "2024-01-15",
-    "pullups": 10,
-    "pushups": 40,
+    "date": "2025-02-15",
+    "pullups": 5,
+    "pushups": 20,
     "plank": {
       "minutes": 2,
       "seconds": 0
     },
     "run": {
-      "minutes": 13,
+      "minutes": 30,
       "seconds": 0
     }
   },
   {
-    "date": "2024-03-10",
-    "pullups": 12,
-    "pushups": 50,
+    "date": "2025-02-17",
+    "pullups": 6,
+    "pushups": 22,
     "plank": {
       "minutes": 2,
-      "seconds": 30
-    },
-    "run": {
-      "minutes": 12,
-      "seconds": 30
-    }
-  },
-  {
-    "date": "2024-06-05",
-    "pullups": 15,
-    "pushups": 55,
-    "plank": {
-      "minutes": 3,
-      "seconds": 0
-    },
-    "run": {
-      "minutes": 12,
-      "seconds": 0
-    }
-  },
-  {
-    "date": "2024-08-20",
-    "pullups": 20,
-    "pushups": 65,
-    "plank": {
-      "minutes": 4,
-      "seconds": 0
-    },
-    "run": {
-      "minutes": 12,
       "seconds": 10
-    }
-  },
-  {
-    "date": "2024-11-02",
-    "pullups": 18,
-    "pushups": 60,
-    "plank": {
-      "minutes": 3,
-      "seconds": 30
     },
     "run": {
-      "minutes": 12,
-      "seconds": 20
+      "minutes": 30,
+      "seconds": 0
     }
   }
 ]
