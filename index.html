@@ -43,7 +43,11 @@
   <div id="resultArea" class="box">
     <h2>Test Result</h2>
     <div id="resultDisplay"></div>
-    <h3>Log Entry (copy to <a href="https://github.com/the3rdPoliceman/FitnessTest/blob/main/historicalData.json">your historical data file</a>):</h3>
+    <h3>
+      Log Entry (copy to 
+      <a href="https://github.com/the3rdPoliceman/FitnessTest/blob/main/historicalData.json">your historical data file</a>
+      ):
+    </h3>
     <pre id="logEntry"></pre>
   </div>
   
@@ -74,7 +78,7 @@
             <li>No breaks allowed - once you start, your weight must remain on your hands</li>
           </ul>
         </p>
-        <p><strong>Scoring:</strong> 80 reps gives 100 points. Each rep less loses you 0.8 points. Rounded down</p>
+        <p><strong>Scoring:</strong> 80 reps gives 100 points. Each rep less loses you 0.8 points. Rounded down.</p>
       </li>
 
       <li>
@@ -87,6 +91,15 @@
         <strong>2-Mile Run:</strong> Tests cardiovascular fitness.
         <p>Run a distance of 2 miles (3.2 km) as fast as possible.</p>
         <p><strong>Scoring:</strong> 12:00 gives 100 points. For every 5 seconds more than 12:00, you lose 1 point.</p>
+        <p>
+          Here is the route I use (click to enlarge):<br>
+          <img 
+            src="images/3.2km_route_thumb.png" 
+            alt="2-Mile Route Thumbnail" 
+            id="routeThumbnail"
+            style="cursor: pointer;"
+          />
+        </p>
       </li>
     </ul>
 
@@ -124,7 +137,13 @@
       <table id="runTable"></table>
     </div>
   </div>
-  
+
+  <!-- MODAL DIALOG FOR FULL-SIZE IMAGE -->
+  <div id="routeModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="routeFullImage" alt="Full-Size Route" />
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>

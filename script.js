@@ -297,8 +297,35 @@ function generateRunTable() {
   }
 }
 
-// Call table generation functions
+// Generate all tables on load
 generatePullupTable();
 generatePushupTable();
 generatePlankTable();
 generateRunTable();
+
+// ========================
+// MODAL FOR ROUTE IMAGE
+// ========================
+
+const routeModal = document.getElementById("routeModal");
+const routeThumbnail = document.getElementById("routeThumbnail");
+const routeFullImage = document.getElementById("routeFullImage");
+const closeBtn = document.querySelector(".modal .close");
+
+// When user clicks the thumbnail, show the modal with full-size image
+routeThumbnail.addEventListener("click", () => {
+  routeModal.style.display = "block";
+  routeFullImage.src = "images/3.2km_route.png"; 
+});
+
+// When user clicks the (x) close button, hide the modal
+closeBtn.addEventListener("click", () => {
+  routeModal.style.display = "none";
+});
+
+// (Optional) If user clicks outside the image, also close the modal
+routeModal.addEventListener("click", (event) => {
+  if (event.target === routeModal) {
+    routeModal.style.display = "none";
+  }
+});

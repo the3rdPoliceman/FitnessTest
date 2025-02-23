@@ -102,3 +102,38 @@ pre {
   border-radius: 4px;
   overflow-x: auto;
 }
+
+/* Modal container - hidden by default */
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 9999; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgba(0,0,0,0.8); /* semi-transparent background */
+}
+
+/* Modal content image */
+.modal-content {
+  display: block;
+  margin: 5% auto;
+  max-width: 90%;
+  max-height: 80vh; /* keep it within the viewport height */
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+/* Close button (X) */
+.close {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none; /* prevent text highlight on click */
+}
