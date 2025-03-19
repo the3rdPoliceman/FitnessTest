@@ -24,18 +24,5 @@
       "minutes": 30,
       "seconds": 0
     }
-  },
-  {
-  "date": "2025-03-06",
-  "pullups": 7,
-  "pushups": 36,
-  "plank": {
-    "minutes": 3,
-    "seconds": 25
-  },
-  "run": {
-    "minutes": 17,
-    "seconds": 25
   }
-}
 ]
