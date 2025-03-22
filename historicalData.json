@@ -1,18 +1,5 @@
 [
   {
-    "date": "2025-02-15",
-    "pullups": 5,
-    "pushups": 20,
-    "plank": {
-      "minutes": 2,
-      "seconds": 0
-    },
-    "run": {
-      "minutes": 30,
-      "seconds": 0
-    }
-  },
-  {
     "date": "2025-02-17",
     "pullups": 6,
     "pushups": 35,
@@ -23,6 +10,19 @@
     "run": {
       "minutes": 30,
       "seconds": 0
+    }
+  },
+  {
+    "date": "2025-03-22",
+    "pullups": 7,
+    "pushups": 45,
+    "plank": {
+      "minutes": 3,
+      "seconds": 30
+    },
+    "run": {
+      "minutes": 17,
+      "seconds": 15
     }
   }
 ]
